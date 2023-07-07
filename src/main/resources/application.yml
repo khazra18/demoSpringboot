@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: DEMO-APPLICATION
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysqltutorial
+    username: root
+    password: admin
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+
+profiles:
+  names:
+    - krishanu
+    - tirthankar
+    - suvodip
+
