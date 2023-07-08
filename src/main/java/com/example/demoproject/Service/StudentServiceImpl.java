@@ -22,9 +22,13 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student getStudentDetailsById(int rollNumber) {
-        Optional<Student> student = studentRepository.findById(rollNumber);
-        return student.orElse(null);
+    public Student getStudentDetailsByRollNumber(int rollNumber) {
+        return studentRepository.getStudentByRollNumber(rollNumber);
+    }
+
+    @Override
+    public Student getStudentDetailsByRollNumberAndMobile(int rollNumber, String mobile) {
+        return studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber,mobile);
     }
 
     @Override

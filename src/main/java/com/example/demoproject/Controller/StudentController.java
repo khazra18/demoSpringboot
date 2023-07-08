@@ -21,6 +21,16 @@ public class StudentController {
         return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
     }
 
+    @GetMapping("getStudentByRollNumber/{rollNumber}")
+    public ResponseEntity<Student> getStudentDetailsByRollNumber(@PathVariable int rollNumber){
+        return new ResponseEntity<>(studentService.getStudentDetailsByRollNumber(rollNumber),HttpStatus.OK);
+    }
+
+    @GetMapping("getStudentDetailsByRollNumberAndMobile")
+    public ResponseEntity<Student> getStudentDetailsByRollNumberAndMobile(@RequestParam int rollNumber,@RequestParam String mobile){
+        return new ResponseEntity<>(studentService.getStudentDetailsByRollNumberAndMobile(rollNumber,mobile),HttpStatus.OK);
+    }
+
     @PostMapping("addStudent")
     public ResponseEntity<Student> addStudent(@RequestBody Student student){
         return new ResponseEntity<>(studentService.createStudent(student),HttpStatus.CREATED);

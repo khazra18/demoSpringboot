@@ -8,7 +8,8 @@ import java.util.List;
 public interface StudentService {
 
     public List<Student> getAllStudents();
-    public Student getStudentDetailsById(int rollNumber);
+    public Student getStudentDetailsByRollNumber(int rollNumber);
+    public Student getStudentDetailsByRollNumberAndMobile(int rollNumber,String mobile);
     public Student createStudent(Student student);
     public Student updateStudentDetails(Student student);
     public void deleteStudent(int rollNumber);
