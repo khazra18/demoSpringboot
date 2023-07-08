@@ -1,6 +1,7 @@
 package com.example.demoproject.Service;
 
 import com.example.demoproject.Entity.Student;
+import com.example.demoproject.ExceptionModel.StudentNotFoundException;
 import com.example.demoproject.Repository.StudentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,10 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student getStudentDetailsByRollNumberAndMobile(int rollNumber, String mobile) {
-        return studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber,mobile);
+
+        if (studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber,mobile) != null)
+            return studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber,mobile);
+        throw new StudentNotFoundException("Student not found : rollNumber - " + rollNumber);
     }
 
     @Override
