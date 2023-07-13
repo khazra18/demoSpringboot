@@ -3,6 +3,7 @@ package com.example.demoproject.Service;
 import com.example.demoproject.Entity.Student;
 import com.example.demoproject.ExceptionModel.StudentNotFoundException;
 import com.example.demoproject.Repository.StudentRepository;
+import com.example.demoproject.Utils.Utils;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
@@ -30,9 +31,10 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public Student getStudentDetailsByRollNumberAndMobile(int rollNumber, String mobile) {
 
-        if (studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber,mobile) != null)
-            return studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber,mobile);
-        throw new StudentNotFoundException("Student not found : rollNumber - " + rollNumber);
+        if (studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber, mobile) != null)
+            return studentRepository.getStudentDetailsByRollNumberAndMobile(rollNumber, mobile);
+        throw new StudentNotFoundException("Student not found");
+
     }
 
     @Override
@@ -44,7 +46,7 @@ public class StudentServiceImpl implements StudentService{
     public Student updateStudentDetails(Student student) {
 
         Student studentRepo = studentRepository.findById(student.getRollNumber()).orElse(null);
-        if (studentRepo!= null){
+        if (studentRepo != null) {
             studentRepo.setName(student.getName());
             studentRepo.setSection(student.getSection());
             studentRepo.setClassName(student.getClassName());
