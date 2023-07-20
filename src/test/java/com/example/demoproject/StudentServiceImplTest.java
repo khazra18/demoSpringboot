@@ -79,10 +79,25 @@ public class StudentServiceImplTest {
     @Test
     @DisplayName("deleteStudentTest")
     public void deleteStudentTest(){
-        StudentServiceImpl studentService1 = Mockito.spy(StudentServiceImpl.class);
-        doNothing().when(studentService1).deleteStudent(anyInt());
-        studentService1.deleteStudent(anyInt());
-        verify(studentService1,times(1)).deleteStudent(anyInt());
+
+        // for given input
+        final Integer id = 1;
+        // when the desired action performed
+        studentService.deleteStudent(id);
+        // then verify
+        Mockito.verify(studentRepository).deleteById(id);
 
     }
+
+    @Test
+    @DisplayName("createStudentTest")
+    public void createStudentTest(){
+
+        Student student1 = new Student(2, "1234567890", "abc", "1", "A");
+        when(studentRepository.save(student1)).thenReturn(student1);
+        Student student2 = studentService.createStudent(student1);
+        assertEquals(2,student2.getRollNumber());
+    }
+
+
 }
