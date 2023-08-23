@@ -14,7 +14,6 @@ import java.util.List;
 @Component
 @ConfigurationProperties(prefix = "profiles")
 public class ConfigProperties {
-
     List<String> names;
 
 }
