@@ -61,4 +61,12 @@ public class StudentController {
         return new ResponseEntity<>(s, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("deleteStudent/{rollNumber}")
+    public ResponseEntity<Object> deleteStudent(@PathVariable int rollNumber){
+        studentService.deleteStudent(rollNumber);
+        log.info("inside deleteStudent new method {}",rollNumber);
+        String s = "Student " + rollNumber + " is deleted from DB";
+        return new ResponseEntity<>(s,HttpStatus.NO_CONTENT);
+    }
+
 }
